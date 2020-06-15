@@ -11,7 +11,7 @@ public class BonusCalculatorTest {
     @Test
     void should_calculate_individual_bonus_0_for_sales_equal_to_quota() {
         BonusCalculator bonusCalculator = new BonusCalculator();
-        Salesman salesman = new Salesman(10, 10, 100, 100);
+        Salesman salesman = new Salesman(10, 10, 100, 0);
 
         BigDecimal result = bonusCalculator.calculateIndividualBonus(salesman);
 
@@ -21,7 +21,7 @@ public class BonusCalculatorTest {
     @Test
     void should_calculate_realization_of_sales() {
         BonusCalculator bonusCalculator = new BonusCalculator();
-        Salesman salesman = new Salesman(100, 50, 100, 100);
+        Salesman salesman = new Salesman(100, 50, 100, 0);
 
         BigDecimal result = bonusCalculator.calculateIndividualBonus(salesman);
 
@@ -31,7 +31,7 @@ public class BonusCalculatorTest {
     @Test
     void should_calculate_0_for_sales_lower_then_quota() {
         BonusCalculator bonusCalculator = new BonusCalculator();
-        Salesman salesman = new Salesman(50, 100, 10, 10);
+        Salesman salesman = new Salesman(13000, 15000, 10, 10);
 
         BigDecimal result = bonusCalculator.calculateIndividualBonus(salesman);
 
@@ -41,7 +41,7 @@ public class BonusCalculatorTest {
     @Test
     void should_calculate_bonus_without_tax() {
         BonusCalculator bonusCalculator = new BonusCalculator();
-        Salesman salesman = new Salesman(100, 50, 10, 100);
+        Salesman salesman = new Salesman(100, 50, 10, 0);
 
         BigDecimal result = bonusCalculator.calculateIndividualBonus(salesman);
 
@@ -51,10 +51,10 @@ public class BonusCalculatorTest {
     @Test
     void should_calculate_bonus_with_tax() {
         BonusCalculator bonusCalculator = new BonusCalculator();
-        Salesman salesman = new Salesman(100, 50, 10, 50);
+        Salesman salesman = new Salesman(12000, 11000, 10, 10);
 
         BigDecimal result = bonusCalculator.calculateIndividualBonus(salesman);
 
-        assertThat(result).isEqualByComparingTo(new BigDecimal("2.5"));
+        assertThat(result).isEqualByComparingTo(new BigDecimal(90));
     }
 }

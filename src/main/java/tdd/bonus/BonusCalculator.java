@@ -20,6 +20,6 @@ public class BonusCalculator {
     }
 
     private double calculateIndividualBonus(double bonusCommission, int taxPercentage) {
-        return (bonusCommission * taxPercentage) / 100.0;
+        return bonusCommission - (bonusCommission * taxPercentage) / 100.0;
     }
 }
