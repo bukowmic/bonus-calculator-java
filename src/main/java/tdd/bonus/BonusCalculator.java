@@ -22,4 +22,15 @@ public class BonusCalculator {
     private double calculateIndividualBonus(double bonusCommission, int taxPercentage) {
         return bonusCommission - (bonusCommission * taxPercentage) / 100.0;
     }
+
+    public BigDecimal calculateTeamBonus(Team team) {
+        if (team == null || team.teamMembersNumber() == 0)
+            return BigDecimal.ZERO;
+
+        int salesRealization = calculateSalesRealization(team.geTeamSale(), team.geTeamQuota());
+        double bonusCommission = calculateBonusCommission(salesRealization, team.getTeamCommissionPercentage());
+        double bonusDividedByTeamMembersNumber = bonusCommission / team.teamMembersNumber();
+
+        return BigDecimal.valueOf(bonusDividedByTeamMembersNumber);
+    }
 }
